@@ -9,41 +9,12 @@ const initialMembers = [
 
 function App() {
   const [members, setMembers] = useState(initialMembers)
-  const [formValues, setFormValues] = useState({
-    name: '',
-    email:'',
-    role: '',
-  })
-
-  const onInputChange = event => {
-    const changedInput = event.target.name
-
-    const newVal = event.target.value
-
-    setFormValues({
-      ...formValues,
-      [changedInput]: newVal,
-    })
-  }
-
-  const onFormSubmit = event => {
-    event.preventDefault()
-
-    const newMember = {
-      id: uuid(),
-      name: formValues.name,
-      email: formValues.email,
-      role: formValues.role,
-    }
-    setMembers([...members, newMember])
-  }
-
+  
   return (
     <div className="App">
       <Forms 
-        onInputChange={onInputChange}
-        formValues={formValues}
-        onFormSubmit={onFormSubmit}
+        setMembers={setMembers}
+        members={members}
         />
 
         <h2>List of Members</h2>
